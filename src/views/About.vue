@@ -42,8 +42,8 @@ const profile: Profile = {
     'En dehors du code, je suis passionné de jeux vidéo, mangas, animés et de zoologie — actuelle, ancienne et spéculative. Ces centres d\'intérêt nourrissent ma curiosité et ma créativité.'
   ],
   networks: [
-    { name: 'Email', url: 'mailto:chikha_a@etnaalternance.net' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/alexandre-chikhaoui' }
+    { name: 'Email', url: 'mailto:chikha_a@etna-alternance.net' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/alexandre-chikhaoui-a577923aa/' }
   ]
 };
 
@@ -51,26 +51,26 @@ const skills: SkillGroup[] = [
   {
     category: 'Langages',
     items: [
-      { name: 'Python (POO)', level: 75 },
-      { name: 'JavaScript', level: 70 },
-      { name: 'TypeScript', level: 65 }
+      { name: 'Python (POO)', level: 40 },
+      { name: 'JavaScript', level: 45 },
+      { name: 'TypeScript', level: 45}
     ]
   },
   {
     category: 'Frameworks front-end',
     items: [
-      { name: 'Vue.js', level: 70 },
-      { name: 'React', level: 60 },
-      { name: 'AngularJS', level: 50 }
+      { name: 'Vue.js', level: 45 },
+      { name: 'React', level: 40 },
+      { name: 'AngularJS', level: 40 }
     ]
   },
   {
     category: 'Outils & Infrastructure',
     items: [
-      { name: 'Git / GitHub', level: 75 },
-      { name: 'Docker', level: 65 },
-      { name: 'Node.js', level: 60 },
-      { name: 'PostgreSQL', level: 60 }
+      { name: 'Git / GitHub', level: 50 },
+      { name: 'Docker', level: 70 },
+      { name: 'Node.js', level: 40 },
+      { name: 'PostgreSQL', level: 40 }
     ]
   }
 ];
@@ -145,7 +145,7 @@ defineExpose({
               v-for="network in profile.networks"
               :key="network.name"
               :href="network.url"
-              target="_blank"
+              target="network.url.startsWith('htpp') ? '_blank' : null"
               rel="noopener"
               class="network-link"
             >
@@ -155,7 +155,6 @@ defineExpose({
         </aside>
 
         <div class="about__right-column">
-          <!-- Bio -->
           <section class="about__section">
             <h3 class="about__section-title">Qui suis-je ?</h3>
             <p v-for="para in profile.bio" :key="para" class="about__para">
