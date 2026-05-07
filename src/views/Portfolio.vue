@@ -123,6 +123,7 @@ const filteredProjects = computed(() =>
 )
 
 const currentIndex = ref(0)
+const currentSlide = computed(() => slides[currentIndex.value] || null)
 const transitionDirection = ref('carousel-right')
 
 function next() {
@@ -198,57 +199,6 @@ function goTo(i: number) {
             </div>
           </div>
         </article>
-      </section>
-
-      <section class="carousel-section">
-        <h2 class="section-title">Gallerie visuelle</h2>
-
-        <div class="carousel">
-          <button
-            class="carousel__arrow carousel__arrow--left"
-            @click="previous"
-            aria-label="Previous"
-          >
-            ←
-          </button>
-
-          <div class="carousel__window">
-            <Transition :name="transitionDirection" mode="out-in">
-              <div
-                :key="currentIndex"
-                class="carousel__slide"
-                :style="{ background: slides.color }"
-              >
-                <span class="carousel__slide-emoji">
-                  {{ slides.emoji }}
-                </span>
-                <div class="carousel__caption">
-                  <h3>{{ slides.title }}</h3>
-                  <p>{{ slides.description }}</p>
-                </div>
-              </div>
-            </Transition>
-          </div>
-
-          <button
-            class="carousel__arrow carousel__arrow--right"
-            @click="next"
-            aria-label="Next"
-          >
-            →
-          </button>
-
-          <div class="carousel__dots">
-            <button
-              v-for="(_, i) in slides"
-              :key="i"
-              class="carousel__dot"
-              :class="{ 'carousel__dot--active': i === currentIndex }"
-              @click="goTo(i)"
-              :aria-label="`Slide ${i + 1}`"
-            ></button>
-          </div>
-        </div>
       </section>
     </div>
   </main>
