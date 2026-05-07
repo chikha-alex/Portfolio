@@ -42,54 +42,10 @@
       </div>
     </Transition>
   </nav>
-  <section class="contact">
-    <div class="conteneur">
-      <h1>Contact</h1>
-
-      <form class="contact__formulaire" @submit.prevent="envoyerFormulaire">
-
-        <div class="champ">
-          <label for="nom">Nom</label>
-          <input
-            id="nom"
-            v-model="form.nom"
-            type="text"
-            required
-          />
-        </div>
-
-        <div class="champ">
-          <label for="email">Email</label>
-          <input
-            id="email"
-            v-model="form.email"
-            type="email"
-            required
-          />
-        </div>
-
-        <div class="champ">
-          <label for="message">Message</label>
-          <textarea
-            id="message"
-            v-model="form.message"
-            rows="6"
-            required
-          ></textarea>
-        </div>
-
-        <button type="submit">
-          Envoyer
-        </button>
-
-      </form>
-    </div>
-  </section>
 </template>
  
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { reactive } from 'vue'
  
 const liens = [
   { nom: 'accueil',  route: '/', label: 'Accueil'  },
@@ -108,22 +64,6 @@ function gererScroll() {
  
 onMounted(() => window.addEventListener('scroll', gererScroll))
 onUnmounted(() => window.removeEventListener('scroll', gererScroll))
-
-const form = reactive({
-  nom: '',
-  email: '',
-  message: ''
-})
-
-function envoyerFormulaire() {
-  console.log(form)
-
-  alert('Message envoyé !')
-
-  form.nom = ''
-  form.email = ''
-  form.message = ''
-}
 </script>
 
 <style scoped>
