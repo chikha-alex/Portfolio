@@ -63,7 +63,7 @@ const cards: Card[] = [
             <RouterLink to="/portfolio" class="btn btn-principal">
               Voir mes projets →
             </RouterLink>
-            <RouterLink to="/a-propos" class="btn">
+            <RouterLink to="/about" class="btn">
               En savoir plus
             </RouterLink>
           </div>

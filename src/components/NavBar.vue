@@ -42,15 +42,60 @@
       </div>
     </Transition>
   </nav>
+  <section class="contact">
+    <div class="conteneur">
+      <h1>Contact</h1>
+
+      <form class="contact__formulaire" @submit.prevent="envoyerFormulaire">
+
+        <div class="champ">
+          <label for="nom">Nom</label>
+          <input
+            id="nom"
+            v-model="form.nom"
+            type="text"
+            required
+          />
+        </div>
+
+        <div class="champ">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            v-model="form.email"
+            type="email"
+            required
+          />
+        </div>
+
+        <div class="champ">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            v-model="form.message"
+            rows="6"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">
+          Envoyer
+        </button>
+
+      </form>
+    </div>
+  </section>
 </template>
  
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { reactive } from 'vue'
  
 const liens = [
-  { nom: 'accueil',  route: '/',          label: 'Accueil'  },
+  { nom: 'accueil',  route: '/', label: 'Accueil'  },
   { nom: 'a-propos', route: '/about',  label: 'À propos' },
-  { nom: 'portfolio', route: '/portfolio', label: 'Portfolio' }
+  { nom: 'portfolio', route: '/portfolio', label: 'Portfolio' },
+  { nom: 'contact', route: '/contact', label:'Me contacter'}
 ]
  
 const menuOuvert = ref(false)
@@ -63,6 +108,22 @@ function gererScroll() {
  
 onMounted(() => window.addEventListener('scroll', gererScroll))
 onUnmounted(() => window.removeEventListener('scroll', gererScroll))
+
+const form = reactive({
+  nom: '',
+  email: '',
+  message: ''
+})
+
+function envoyerFormulaire() {
+  console.log(form)
+
+  alert('Message envoyé !')
+
+  form.nom = ''
+  form.email = ''
+  form.message = ''
+}
 </script>
 
 <style scoped>
@@ -130,8 +191,7 @@ onUnmounted(() => window.removeEventListener('scroll', gererScroll))
 .nav__lien:hover::after {
   width: 100%;
 }
- 
-/* === BURGER (mobile) === */
+
 .nav__burger {
   display: none;
   flex-direction: column;
@@ -154,8 +214,7 @@ onUnmounted(() => window.removeEventListener('scroll', gererScroll))
 .burger-barre:nth-child(1).actif { transform: rotate(45deg) translate(4px, 4px); }
 .burger-barre:nth-child(2).actif { opacity: 0; }
 .burger-barre:nth-child(3).actif { transform: rotate(-45deg) translate(4px, -4px); }
- 
-/* === MENU MOBILE === */
+
 .nav__mobile {
   display: flex;
   flex-direction: column;
@@ -186,5 +245,37 @@ onUnmounted(() => window.removeEventListener('scroll', gererScroll))
 @media (max-width: 640px) {
   .nav__liens  { display: none; }
   .nav__burger { display: flex; }
+}
+
+.contact {
+  padding: 4rem 0;
+}
+
+.contact__formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  padding: 1rem;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
 }
 </style>
